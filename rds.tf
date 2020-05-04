@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet_group1" {
         name = "db_subnet_group1"
-        subnet_ids = "${aws_subnet.public-subnet.*.id}"
+        subnet_ids = ${aws_subnet.public-subnet.*.id}
 }
 
 resource "aws_db_instance" "db" {
