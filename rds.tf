@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet_group1" {
         name = "db_subnet_group1"
-        subnet_ids = ${aws_subnet.public-subnet.*.id}
+        subnet_ids = aws_subnet.public-subnet.*.id
 }
 
 resource "aws_db_instance" "db" {
@@ -12,7 +12,7 @@ resource "aws_db_instance" "db" {
 	apply_immediately = "true"
 	backup_retention_period = 7
 	backup_window = "01:00-05:00"
-	db_subnet_group_name = ${aws_db_subnet_group.db_subnet_group1.name}
+	db_subnet_group_name = aws_db_subnet_group.db_subnet_group1.name
 	multi_az = "false"
 	storage_type = "gp2"
 	username = "aurora"
