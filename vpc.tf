@@ -1,12 +1,12 @@
 variable "availability_zones" {
 	description = "AZs in this region to use"
 	default = ["us-east-1a", "us-east-1b", "us-east-1c"]
-	type = "list"
+	type = list(string)
 }
 
 variable "public_subnet_cidrs" {
         default = ["20.0.0.0/28", "20.0.0.16/28"]
-        type = "list"
+        type = list(string)
 }
 
 resource "aws_vpc" "main" {
