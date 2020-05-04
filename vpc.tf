@@ -5,12 +5,12 @@ variable "availability_zones" {
 }
 
 variable "public_subnet_cidrs" {
-        default = ["10.0.0.0/28", "10.0.0.16/28"]
+        default = ["20.0.0.0/28", "20.0.0.16/28"]
         type = "list"
 }
 
 resource "aws_vpc" "main" {
-        cidr_block = "10.0.0.0/24"
+        cidr_block = "20.0.0.0/24"
 	enable_dns_hostnames = "true"
 
         tags = {
@@ -32,7 +32,7 @@ resource "aws_subnet" "public-subnet" {
 
 resource "aws_subnet" "private-subnet" {
         vpc_id = "${aws_vpc.main.id}"
-        cidr_block = "10.0.0.32/28"
+        cidr_block = "20.0.0.32/28"
         availability_zone = "${var.availability_zones[1]}"
         map_public_ip_on_launch = "true"
 
@@ -112,7 +112,7 @@ resource "aws_security_group" "db_sg" {
                 from_port = "3306"
                 to_port = "3306"
                 protocol = "tcp"
-                cidr_blocks = ["10.0.0.0/20"]
+                cidr_blocks = ["20.0.0.0/20"]
         }
 
         egress {
